@@ -1,14 +1,15 @@
 package org.orgname.app.util;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
-public abstract class BaseForm extends JFrame
-{
+public abstract class BaseForm extends JFrame {
     private static String baseApplicationTitle;
 
-    public BaseForm()
-    {
+    public BaseForm() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(getFormWidth(), getFormHeight()));
         setTitle(baseApplicationTitle == null ? "Application" : baseApplicationTitle);
