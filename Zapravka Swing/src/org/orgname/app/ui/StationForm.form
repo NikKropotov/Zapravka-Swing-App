@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="org.orgname.app.ui.SatationForm">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="org.orgname.app.ui.StationForm">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="645" height="495"/>
+      <xy x="20" y="20" width="659" height="495"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="ae635" binding="navMenu" layout-manager="GridLayoutManager" row-count="9" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="1f469" binding="navMenu" layout-manager="GridLayoutManager" row-count="10" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="true">
@@ -20,12 +20,12 @@
         </properties>
         <border type="none"/>
         <children>
-          <vspacer id="68229">
+          <vspacer id="b93cc">
             <constraints>
-              <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+              <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
           </vspacer>
-          <component id="e757a" class="javax.swing.JLabel">
+          <component id="93a25" class="javax.swing.JLabel" binding="logoLabel">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -36,102 +36,120 @@
               <text value="ZP"/>
             </properties>
           </component>
-          <vspacer id="2a500">
+          <vspacer id="8c612">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
           </vspacer>
-          <vspacer id="a1efb">
+          <vspacer id="ca75d">
             <constraints>
               <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
           </vspacer>
-          <hspacer id="3aa26">
+          <hspacer id="cf928">
             <constraints>
-              <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
-          <hspacer id="6be4f">
+          <hspacer id="7b002">
             <constraints>
-              <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
-          <hspacer id="8ae23">
+          <hspacer id="228e2">
             <constraints>
               <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
-          <hspacer id="d0cdd">
+          <hspacer id="7828">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
-          <hspacer id="40c06">
+          <hspacer id="1e9eb">
             <constraints>
               <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
-          <hspacer id="ace5f">
+          <hspacer id="d402b">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
-          <component id="d674" class="javax.swing.JButton" binding="fuelButton">
+          <component id="a8cec" class="javax.swing.JButton" binding="fuelButton">
             <constraints>
               <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-13224653"/>
               <enabled value="true"/>
+              <focusable value="false"/>
               <font name="Arial" size="20" style="0"/>
               <foreground color="-8093823"/>
               <horizontalAlignment value="2"/>
               <text value="Толпиво"/>
             </properties>
           </component>
-          <component id="6b98c" class="javax.swing.JButton" binding="gasButton">
+          <component id="56eaa" class="javax.swing.JButton" binding="gasButton">
             <constraints>
               <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-13224653"/>
+              <focusable value="false"/>
               <font name="Arial" size="20" style="0"/>
-              <foreground color="-14171737"/>
+              <foreground color="-13703738"/>
               <horizontalAlignment value="2"/>
               <text value="Заправки"/>
             </properties>
           </component>
-          <component id="69f7b" class="javax.swing.JButton" binding="firmButton">
+          <component id="fe127" class="javax.swing.JButton" binding="firmButton">
             <constraints>
               <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-13224653"/>
+              <focusable value="false"/>
               <font name="Arial" size="20" style="0"/>
               <foreground color="-8093823"/>
               <horizontalAlignment value="2"/>
               <text value="Фирмы"/>
             </properties>
           </component>
-          <vspacer id="c0f4c">
+          <vspacer id="aec9d">
             <constraints>
-              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+              <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
           </vspacer>
-          <component id="667e1" class="javax.swing.JButton" binding="accountButton">
+          <component id="45d0" class="javax.swing.JButton" binding="accountButton">
             <constraints>
-              <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-13224653"/>
+              <focusable value="false"/>
               <font name="Arial" size="18" style="0"/>
               <foreground color="-1"/>
               <text value="Аккаунт"/>
             </properties>
           </component>
+          <component id="cddfb" class="javax.swing.JButton" binding="statisticButton">
+            <constraints>
+              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-13224653"/>
+              <focusable value="false"/>
+              <font name="Arial" size="20" style="0"/>
+              <foreground color="-8093823"/>
+              <horizontalAlignment value="2"/>
+              <text value="Статистика"/>
+              <visible value="false"/>
+            </properties>
+          </component>
         </children>
       </grid>
-      <grid id="63f83" binding="mainContent" layout-manager="GridLayoutManager" row-count="8" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="df820" binding="mainContent" layout-manager="GridLayoutManager" row-count="5" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="true"/>
@@ -141,95 +159,96 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="c3419" class="javax.swing.JLabel">
+          <component id="793a0" class="javax.swing.JLabel" binding="mainLabe">
             <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="Arial" size="26" style="1"/>
               <foreground color="-11448500"/>
-              <text value="Заправки"/>
+              <text value="АЗС"/>
             </properties>
           </component>
-          <component id="b7b88" class="javax.swing.JTextField" binding="searchField">
+          <component id="24ad3" class="javax.swing.JTextField" binding="searchField">
             <constraints>
-              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
+              <grid row="1" column="4" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="313" height="20"/>
               </grid>
             </constraints>
             <properties>
               <background color="-14171737"/>
+              <caretColor color="-1"/>
+              <focusable value="true"/>
               <font name="Arial" size="14" style="0"/>
               <foreground color="-1"/>
             </properties>
           </component>
-          <hspacer id="76ae">
+          <hspacer id="374fb">
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
-          <hspacer id="5d076">
+          <hspacer id="fc4e0">
             <constraints>
-              <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
-          <scrollpane id="d42ad" binding="stationScrollPanel">
+          <vspacer id="bf5c1">
             <constraints>
-              <grid row="5" column="1" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="2" row-span="1" col-span="4" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <component id="2ff60" class="javax.swing.JButton" binding="editStationsButton">
+            <constraints>
+              <grid row="3" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-1"/>
+              <background color="-13703738"/>
+              <focusable value="false"/>
+              <font name="Arial" size="14" style="0"/>
+              <foreground color="-1"/>
+              <text value="Редактировать"/>
+              <visible value="false"/>
+            </properties>
+          </component>
+          <vspacer id="dfdda">
+            <constraints>
+              <grid row="4" column="5" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <vspacer id="e0c03">
+            <constraints>
+              <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <scrollpane id="43870" binding="stationListScroll">
+            <constraints>
+              <grid row="2" column="2" row-span="1" col-span="4" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <horizontalScrollBarPolicy value="30"/>
             </properties>
             <border type="none"/>
             <children>
-              <component id="966d5" class="javax.swing.JTextArea" binding="stationArea">
+              <component id="435f" class="javax.swing.JList" binding="stationList">
                 <constraints/>
                 <properties>
                   <background color="-1"/>
-                  <font name="Arial" size="24" style="0"/>
+                  <focusable value="false"/>
+                  <font name="Arial" size="20" style="1"/>
                   <foreground color="-13224653"/>
+                  <requestFocusEnabled value="true"/>
+                  <selectionBackground color="-13703738"/>
+                  <selectionForeground color="-1"/>
+                  <selectionMode value="2"/>
+                  <visibleRowCount value="4"/>
                 </properties>
               </component>
             </children>
           </scrollpane>
-          <vspacer id="ec41a">
+          <component id="f1b5" class="javax.swing.JLabel" binding="marginLabel">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </vspacer>
-          <vspacer id="7d343">
-            <constraints>
-              <grid row="4" column="1" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </vspacer>
-          <component id="1bffe" class="javax.swing.JLabel" binding="marginLabel">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-1"/>
-              <foreground color="-1"/>
-              <text value="Label"/>
-            </properties>
-          </component>
-          <vspacer id="69909">
-            <constraints>
-              <grid row="7" column="1" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </vspacer>
-          <component id="e17bb" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-1"/>
-              <foreground color="-1"/>
-              <text value="Label"/>
-            </properties>
-          </component>
-          <component id="64605" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="6" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-1"/>

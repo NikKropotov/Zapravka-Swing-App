@@ -5,7 +5,7 @@ public class DailySaleEntity {
     private String daily_fuel_type;
     private String daily_fuel_amount;
     private int client_id_client;
-    private  int fuel_has_gas_station_id_fuel_has_gas_station;
+    private int fuel_has_gas_station_id_fuel_has_gas_station;
     private String daily_sale_date;
     private String sale_price;
     private String max_fuel_type;

@@ -1,8 +1,6 @@
 package org.orgname.app.database.manager;
 
 import org.orgname.app.database.entity.DailySaleEntity;
-import org.orgname.app.database.entity.FuelEntity;
-import org.orgname.app.database.entity.UserEntity;
 import org.orgname.app.util.MysqlDatabase;
 
 import java.sql.*;

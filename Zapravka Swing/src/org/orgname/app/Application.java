@@ -6,7 +6,6 @@ import org.orgname.app.util.DialogUtil;
 import org.orgname.app.util.MysqlDatabase;
 
 import javax.swing.*;
-import java.awt.*;
 import java.sql.Connection;
 
 public class Application {
@@ -16,10 +15,8 @@ public class Application {
 
     private Application() {
         instance = this;
-
         initDatabase();
         initUi();
-//        setIconImage();
         new AuthontifForm();
     }
 
@@ -40,11 +37,6 @@ public class Application {
             e.printStackTrace();
         }
     }
-
-//    private void setIconImage(Image image) {
-//        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("res/icon.png")));
-//
-//    }
 
     public MysqlDatabase getDatabase() {
         return database;

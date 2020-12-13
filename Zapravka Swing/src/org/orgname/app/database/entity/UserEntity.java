@@ -30,7 +30,8 @@ public class UserEntity {
         this.client_phone = client_phone;
     }
 
-    public UserEntity(String login, String password, String client_fio, String client_account_amount, int client_phone) {
+    public UserEntity(String login, String password, String client_fio,
+                      String client_account_amount, int client_phone) {
         this(-1, login, password, client_fio, client_account_amount, client_phone);
     }
 
@@ -133,7 +134,7 @@ public class UserEntity {
         this.account_type = account_type;
     }
 
-    public String setAccount_type_def(){
+    public String setAccount_type_def() {
         this.account_type = account_type;
         account_type = String.valueOf("User");
         return account_type;

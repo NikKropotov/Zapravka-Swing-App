@@ -5,8 +5,7 @@ import com.mysql.cj.jdbc.MysqlDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class MysqlDatabase
-{
+public class MysqlDatabase {
     private final String address;
     private final int port;
     private final String db;
@@ -27,9 +26,8 @@ public class MysqlDatabase
         this(address, 3306, db, user, pass);
     }
 
-    public Connection getConnection() throws SQLException
-    {
-        if(source == null) {
+    public Connection getConnection() throws SQLException {
+        if (source == null) {
             source = new MysqlDataSource();
 
             source.setServerName(address);

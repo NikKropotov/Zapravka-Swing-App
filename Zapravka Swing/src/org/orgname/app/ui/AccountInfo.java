@@ -8,6 +8,7 @@ import org.orgname.app.util.BaseForm;
 import org.orgname.app.util.DialogUtil;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -33,10 +34,12 @@ public class AccountInfo extends BaseForm {
     private JTable historyTable;
     private JLabel marginLabel;
     private JLabel margin2Label;
+    private JButton statisticButton;
 
     public AccountInfo(UserEntity user) {
         this.user = user;
         setContentPane(mainPanel);
+        initUserType();
         initButtton();
         initProperties();
         setVisible(true);
@@ -48,11 +51,17 @@ public class AccountInfo extends BaseForm {
 
     }
 
+    private void initUserType() {
+        if (user.getAccount_type().equals("Admin")) {
+            statisticButton.setVisible(true);
+        }
+    }
+
     public void initUserData() {
         StringBuilder sb = new StringBuilder();
         sb.append("  ID: ").append(user.getId_client()).append("\n")
                 .append("  Логин: ").append(user.getLogin()).append("\n")
-                .append("  ФИО: ").append(user.getClient_fio()).append("\n")
+                .append("  Пользователь: ").append(user.getClient_fio()).append("\n")
                 .append("  Телефон: ").append(user.getClient_phone()).append("\n")
                 .append("  Счёт: ").append(user.getClient_account_amount()).append("\n");
 
@@ -69,6 +78,22 @@ public class AccountInfo extends BaseForm {
                 dispose();
                 new AuthontifForm();
             }
+        });
+        fuelButton.addActionListener(e -> {
+            dispose();
+            new MainForm(user);
+        });
+        gasButton.addActionListener(e -> {
+            dispose();
+            new StationForm(user);
+        });
+        firmButton.addActionListener(e -> {
+            dispose();
+            new FirmForm(user);
+        });
+        statisticButton.addActionListener(e -> {
+            dispose();
+            new StatisticForm(user);
         });
     }
 
@@ -137,30 +162,39 @@ public class AccountInfo extends BaseForm {
         gasButton.setBorder(null);
         firmButton.setBorder(null);
         backButton.setBorder(null);
+        statisticButton.setBorder(null);
+
+        statisticButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                statisticButton.setBorder(null);
+                statisticButton.setText("<html><font color='#2EE5C6'>Статистика</font></html>");
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                statisticButton.setBorder(null);
+                statisticButton.setText("<html><font color='#847F81'>Статистика</font></html>");
+            }
+        });
 
         fuelButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 fuelButton.setBorder(null);
-                fuelButton.setBackground(new Color(76, 75, 72));
-                fuelButton.setText("<html><font color='#209981'>Заправки</font></html>");
+                fuelButton.setText("<html><font color='#2EE5C6'>Топливо</font></html>");
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 fuelButton.setBorder(null);
-                fuelButton.setBackground(new Color(54, 53, 51));
-                fuelButton.setText("<html><font color='#847F81'>Заправки</font></html>");
+                fuelButton.setText("<html><font color='#847F81'>Топливо</font></html>");
             }
         });
         gasButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 gasButton.setBorder(null);
-                gasButton.setBackground(new Color(76, 75, 72));
-                gasButton.setText("<html><font color='#209981'>Заправки</font></html>");
+                gasButton.setText("<html><font color='#2EE5C6'>Заправки</font></html>");
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 gasButton.setBorder(null);
-                gasButton.setBackground(new Color(54, 53, 51));
                 gasButton.setText("<html><font color='#847F81'>Заправки</font></html>");
             }
         });
@@ -168,29 +202,30 @@ public class AccountInfo extends BaseForm {
         firmButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 firmButton.setBorder(null);
-                firmButton.setBackground(new Color(76, 75, 72));
-                firmButton.setText("<html><font color='#209981'>Фирмы</font></html>");
+                firmButton.setText("<html><font color='#2EE5C6'>Фирмы</font></html>");
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 firmButton.setBorder(null);
-                firmButton.setBackground(new Color(54, 53, 51));
                 firmButton.setText("<html><font color='#847F81'>Фирмы</font></html>");
             }
         });
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 backButton.setBorder(null);
-                backButton.setBackground(new Color(76, 75, 72));
-                backButton.setText("<html><font color=white>Назад</font></html>");
+                backButton.setText("<html><font color='#2EE5C6'>Назад</font></html>");
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 backButton.setBorder(null);
-                backButton.setBackground(new Color(54, 53, 51));
                 backButton.setText("<html><font color=white>Назад</font></html>");
             }
         });
+        exitButton.setBackground(new Color(39, 193, 167));
+        exitButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
+        exitButton.setBorderPainted(false);
+
+        exitButton.setBorder(new EmptyBorder(10, 30, 10, 30));
         exitButton.setBorderPainted(false);
         exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {

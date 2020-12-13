@@ -26,8 +26,6 @@ public class StatisticForm extends BaseForm {
     private DefaultTableModel statisTableModel;
 
     private JPanel mainPanel;
-    private JPanel navMenu;
-    private JLabel logoLabel;
     private JButton fuelButton;
     private JButton gasButton;
     private JButton firmButton;
@@ -38,10 +36,14 @@ public class StatisticForm extends BaseForm {
     private JTable statTable;
     private JComboBox<String> comboBox;
     private JButton backButton;
+    private JPanel navMenu;
+    private JLabel logoLabel;
+    private JButton statisticButton;
 
     public StatisticForm(UserEntity user) {
         this.user = user;
         setContentPane(mainPanel);
+        initUserType();
         initButtton();
         initProperties();
         initTable();
@@ -49,6 +51,12 @@ public class StatisticForm extends BaseForm {
         initComboBox();
 
         setVisible(true);
+    }
+
+    private void initUserType() {
+        if (user.getAccount_type().equals("Admin")) {
+            statisticButton.setVisible(true);
+        }
     }
 
     private void initComboBox() {
@@ -114,7 +122,11 @@ public class StatisticForm extends BaseForm {
         });
         gasButton.addActionListener(e -> {
             dispose();
-            new SatationForm(user);
+            new StationForm(user);
+        });
+        firmButton.addActionListener(e -> {
+            dispose();
+            new MainForm(user);
         });
         fuelButton.addActionListener(e -> {
             dispose();
@@ -132,6 +144,7 @@ public class StatisticForm extends BaseForm {
         firmButton.setBorder(null);
         accountButton.setBorder(null);
         backButton.setBorder(null);
+        statisticButton.setBorder(null);
 
         backButton.setBackground(new Color(39, 193, 167));
         backButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
@@ -146,6 +159,18 @@ public class StatisticForm extends BaseForm {
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 backButton.setBackground(new Color(39, 193, 167));
+            }
+        });
+
+        fuelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                fuelButton.setBorder(null);
+                fuelButton.setText("<html><font color='#2EE5C6'>Топливо</font></html>");
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                fuelButton.setBorder(null);
+                fuelButton.setText("<html><font color='#847F81'>Топливо</font></html>");
             }
         });
 
@@ -170,6 +195,18 @@ public class StatisticForm extends BaseForm {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 firmButton.setBorder(null);
                 firmButton.setText("<html><font color='#847F81'>Фирмы</font></html>");
+            }
+        });
+
+        accountButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                accountButton.setBorder(null);
+                accountButton.setText("<html><font color='#2EE5C6'>Аккаунт</font></html>");
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                accountButton.setBorder(null);
+                accountButton.setText("<html><font color=white>Аккаунт</font></html>");
             }
         });
     }

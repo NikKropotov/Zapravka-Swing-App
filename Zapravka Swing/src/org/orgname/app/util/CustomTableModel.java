@@ -5,8 +5,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 //генерик с сущностью которую мы будем хранить в таблице
-public class CustomTableModel<T> extends AbstractTableModel
-{
+public class CustomTableModel<T> extends AbstractTableModel {
     /*
     не путать Class и class
     class - тип данных
@@ -43,6 +42,7 @@ public class CustomTableModel<T> extends AbstractTableModel
         /*//так названием колонки будет название поля в ващей сущгости*/
         return cls.getDeclaredFields()[column].getName();
 //        return columnNames[column];
+        //ВОТ ТУТА НЕ РОБИТ
     }
 
     @Override
@@ -54,8 +54,7 @@ public class CustomTableModel<T> extends AbstractTableModel
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex)
-    {
+    public Object getValueAt(int rowIndex, int columnIndex) {
         try {
             //получаем поле по номеру колонки
             Field field = cls.getDeclaredFields()[columnIndex];

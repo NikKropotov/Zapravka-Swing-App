@@ -1,6 +1,5 @@
 package org.orgname.app.database.manager;
 
-import org.orgname.app.database.entity.FuelEntity;
 import org.orgname.app.database.entity.StationEntity;
 import org.orgname.app.util.MysqlDatabase;
 
@@ -17,7 +16,6 @@ public class StationEntityManager {
     public StationEntityManager(MysqlDatabase database) {
         this.database = database;
     }
-
 
     public static List<StationEntity> getAllStations() throws SQLException {
         try (Connection c = database.getConnection()) {

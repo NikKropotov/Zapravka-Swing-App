@@ -10,25 +10,18 @@ import org.orgname.app.util.DialogUtil;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
 
 public class FuelMark extends BaseForm {
     private final FuelEntityManager fuelEntityManager = new FuelEntityManager(Application.getInstance().getDatabase());
-
     private final UserEntity user;
     private final FuelEntity fuelEntity;
     private final int rowIndex;
-//    private DefaultTableModel table2Model;
-
     private CustomTableModel<FuelEntity> table2Model;
+//    private DefaultTableModel table2Model;
 
     private JPanel mainPanel;
     private JPanel navMenu;
@@ -46,6 +39,7 @@ public class FuelMark extends BaseForm {
     private JLabel scoreLabel;
     private JButton mathButton;
     private JScrollPane tableScrollPane;
+    private JButton statisticButton;
     private String fuel_name;
     private String gas_name;
     private String price;
@@ -56,6 +50,7 @@ public class FuelMark extends BaseForm {
         this.rowIndex = rowIndex;
         setContentPane(mainPanel);
         fuelArea.setText(String.valueOf(fuelEntity));
+        initUserType();
         initScore();
         initButtton();
         initTable();
@@ -66,14 +61,26 @@ public class FuelMark extends BaseForm {
         setVisible(true);
     }
 
+    private void initUserType() {
+        if (user.getAccount_type().equals("Admin")) {
+            statisticButton.setVisible(true);
+        }
+    }
+
     private void initScore() {
         priceLabel.setText(String.valueOf(fuelEntity.getPrice_one_litr()));
         int price = fuelEntity.getPrice_one_litr();
         mathButton.addActionListener(e -> {
-            double amount = Double.parseDouble(amountField.getText());
-            totalLabel.setText(price + " * " + amount);
-            double score = price * amount;
-            scoreLabel.setText(String.valueOf(score));
+            try {
+                double amount = Double.parseDouble(amountField.getText());
+                totalLabel.setText(price + " * " + amount);
+                double score = price * amount;
+                scoreLabel.setText(String.valueOf(score));
+            }
+            catch (Exception i){
+                i.printStackTrace();
+                DialogUtil.showError("Количество введено некорректно");
+            }
         });
     }
 
@@ -183,6 +190,7 @@ public class FuelMark extends BaseForm {
             fuelTable.setAutoCreateRowSorter(true);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            DialogUtil.showError("Не удалось загрузить данные");
         }
     }
 
@@ -193,11 +201,19 @@ public class FuelMark extends BaseForm {
         });
         gasButton.addActionListener(e -> {
             dispose();
-            new SatationForm(user);
+            new StationForm(user);
         });
         backButton.addActionListener(e -> {
             dispose();
             new MainForm(user);
+        });
+        firmButton.addActionListener(e -> {
+            dispose();
+            new FirmForm(user);
+        });
+        statisticButton.addActionListener(e -> {
+            dispose();
+            new StatisticForm(user);
         });
     }
 
@@ -208,7 +224,7 @@ public class FuelMark extends BaseForm {
         accountButton.setBorder(null);
         backButton.setBorder(null);
         mathButton.setBorder(null);
-
+        statisticButton.setBorder(null);
 
         backButton.setBackground(new Color(39, 193, 167));
         backButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
@@ -242,33 +258,48 @@ public class FuelMark extends BaseForm {
             }
         });
 
+        accountButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                accountButton.setBorder(null);
+                accountButton.setText("<html><font color='#2EE5C6'>Аккаунт</font></html>");
+            }
 
-
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                accountButton.setBorder(null);
+                accountButton.setText("<html><font color=white>Аккаунт</font></html>");
+            }
+        });
         gasButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 gasButton.setBorder(null);
-                gasButton.setBackground(new Color(76, 75, 72));
-                gasButton.setText("<html><font color='#209981'>Заправки</font></html>");
+                gasButton.setText("<html><font color='#2EE5C6'>Заправки</font></html>");
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 gasButton.setBorder(null);
-                gasButton.setBackground(new Color(54, 53, 51));
                 gasButton.setText("<html><font color='#847F81'>Заправки</font></html>");
             }
         });
-
         firmButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 firmButton.setBorder(null);
-                firmButton.setBackground(new Color(76, 75, 72));
-                firmButton.setText("<html><font color='#209981'>Фирмы</font></html>");
+                firmButton.setText("<html><font color='#2EE5C6'>Фирмы</font></html>");
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 firmButton.setBorder(null);
-                firmButton.setBackground(new Color(54, 53, 51));
                 firmButton.setText("<html><font color='#847F81'>Фирмы</font></html>");
+            }
+        });
+        statisticButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                statisticButton.setBorder(null);
+                statisticButton.setText("<html><font color='#2EE5C6'>Статистика</font></html>");
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                statisticButton.setBorder(null);
+                statisticButton.setText("<html><font color='#847F81'>Статистика</font></html>");
             }
         });
     }

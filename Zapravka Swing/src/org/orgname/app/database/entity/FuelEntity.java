@@ -31,7 +31,8 @@ public class FuelEntity {
 
     public FuelEntity(int id_fuel,
                       String fuel_type, int price_one_litr,
-                      int fuel_amount, int id_gas_station, String gas_station_name, String gas_station_address) {
+                      int fuel_amount, int id_gas_station,
+                      String gas_station_name, String gas_station_address) {
         this.id_fuel = id_fuel;
         this.fuel_type = fuel_type;
         this.price_one_litr = price_one_litr;
@@ -44,7 +45,7 @@ public class FuelEntity {
     @Override
     public String toString() {
         return fuel_type + '\n' +
-                "АЗС " + gas_station_address+ '\n' +
+                "АЗС " + gas_station_address + '\n' +
                 "Адрес " + gas_station_name + '\n' +
                 "Запас топлива " + fuel_amount;
     }
