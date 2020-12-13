@@ -2,30 +2,28 @@ package org.orgname.app.ui;
 
 import org.orgname.app.Application;
 import org.orgname.app.database.entity.FuelEntity;
-import org.orgname.app.database.entity.StationEntity;
 import org.orgname.app.database.entity.UserEntity;
 import org.orgname.app.database.manager.FuelEntityManager;
 import org.orgname.app.database.manager.StationEntityManager;
 import org.orgname.app.util.BaseForm;
+import org.orgname.app.util.CustomTableModel;
 import org.orgname.app.util.DialogUtil;
-import org.orgname.app.util.ObjectTableModel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
 
 public class MainForm extends BaseForm {
     private final FuelEntityManager fuelEntityManager = new FuelEntityManager(Application.getInstance().getDatabase());
     private final StationEntityManager stationEntityManager = new StationEntityManager(Application.getInstance().getDatabase());
     private final UserEntity user;
-    private DefaultTableModel tableModel;
 //    private ObjectTableModel<FuelEntity> tableModel;
+    private CustomTableModel<FuelEntity> tableModel;
 
     private JPanel mainPanel;
     private JPanel navMenu;
@@ -37,7 +35,7 @@ public class MainForm extends BaseForm {
     private JTextArea fuelTextArea;
     private JButton accountButton;
     private JTable fuelsTable;
-    private JButton addFuelButton;
+    private JButton editFuelsButton;
     private JButton statisticButton;
     private JLabel logoLabel;
     private JLabel mainLabe;
@@ -51,13 +49,13 @@ public class MainForm extends BaseForm {
         initButtton();
         initProperties();
         initTable();
-        loadTableData();
+//        loadTableData();
         setVisible(true);
     }
 
     private void initUserType() {
-        if (user.getAccount_type().equals("Admin")){
-            addFuelButton.setVisible(true);
+        if (user.getAccount_type().equals("Admin")) {
+            editFuelsButton.setVisible(true);
             statisticButton.setVisible(true);
         }
     }
@@ -71,8 +69,90 @@ public class MainForm extends BaseForm {
             dispose();
             new SatationForm(user);
         });
+        statisticButton.addActionListener(e -> {
+            dispose();
+            new StatisticForm(user);
+        });
     }
 
+    private void initTable() {
+        fuelsTable.getTableHeader().setReorderingAllowed(false);
+
+        fuelsTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2 && fuelsTable.getSelectedRow() != -1) {
+                    int row = fuelsTable.rowAtPoint(e.getPoint());
+                    dispose();
+                    new FuelMark(user, tableModel.getValues().get(row), row);
+                }
+            }
+        });
+
+        fuelsTable.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                int row = fuelsTable.getSelectedRow();
+                if (e.getKeyCode() == KeyEvent.VK_DELETE && row != -1) {
+                    if (DialogUtil.showConfirm(MainForm.this, "Вы точно хотите удалить данную запись?")) {
+                        FuelEntity fuelEntity = tableModel.getValues().get(row);
+                        try {
+                            fuelEntityManager.deleteById(fuelEntity.getId_fuel());
+                            tableModel.getValues().remove(row);
+                            tableModel.fireTableDataChanged();
+
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+
+        try {
+            tableModel = new CustomTableModel<>(
+                    FuelEntity.class,
+                    FuelEntityManager.getAllOnlyFuels(),
+                    new String[]{
+                            "Топливо",
+                            "Заправка",
+                            "Цена за литр"
+                    }
+            );
+            fuelsTable.setModel(tableModel);
+
+            fuelsTable.getColumnModel().getColumn(2).setHeaderValue("Топливо");
+            fuelsTable.getColumnModel().getColumn(4).setHeaderValue("Заправка");
+            fuelsTable.getColumnModel().getColumn(6).setHeaderValue("Цена за литр");
+
+            fuelsTable.getColumnModel().getColumn(0).setMinWidth(0);
+            fuelsTable.getColumnModel().getColumn(0).setMaxWidth(0);
+            fuelsTable.getColumnModel().getColumn(0).setWidth(0);
+            fuelsTable.getColumnModel().getColumn(1).setMinWidth(0);
+            fuelsTable.getColumnModel().getColumn(1).setMaxWidth(0);
+            fuelsTable.getColumnModel().getColumn(1).setWidth(0);
+            fuelsTable.getColumnModel().getColumn(3).setMinWidth(0);
+            fuelsTable.getColumnModel().getColumn(3).setMaxWidth(0);
+            fuelsTable.getColumnModel().getColumn(3).setWidth(0);
+            fuelsTable.getColumnModel().getColumn(5).setMinWidth(0);
+            fuelsTable.getColumnModel().getColumn(5).setMaxWidth(0);
+            fuelsTable.getColumnModel().getColumn(5).setWidth(0);
+            fuelsTable.getColumnModel().getColumn(7).setMinWidth(0);
+            fuelsTable.getColumnModel().getColumn(7).setMaxWidth(0);
+            fuelsTable.getColumnModel().getColumn(7).setWidth(0);
+            fuelsTable.getColumnModel().getColumn(8).setMinWidth(0);
+            fuelsTable.getColumnModel().getColumn(8).setMaxWidth(0);
+            fuelsTable.getColumnModel().getColumn(8).setWidth(0);
+            fuelsTable.getColumnModel().getColumn(9).setMinWidth(0);
+            fuelsTable.getColumnModel().getColumn(9).setMaxWidth(0);
+            fuelsTable.getColumnModel().getColumn(9).setWidth(0);
+            fuelsTable.setAutoCreateRowSorter(true);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    //C object table
 //    private void initTable() {
 //        fuelsTable.getTableHeader().setReorderingAllowed(false);
 //
@@ -83,7 +163,7 @@ public class MainForm extends BaseForm {
 //                    int row = fuelsTable.rowAtPoint(e.getPoint());
 //                    System.out.println(tableModel.getRowEntity(row));
 //                    setVisible(false);
-//                    new FuelMark(tableModel.getRowEntity(row));
+//                    new FuelMark(tableModel.getRowEntity(row), user);
 //                }
 //            }
 //        });
@@ -119,66 +199,68 @@ public class MainForm extends BaseForm {
 //        }
 //    }
 
-    private void initTable() {
-        fuelsTable.getTableHeader().setReorderingAllowed(false);
 
-        tableModel = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-
-        //получение записи по двойному клику
-        fuelsTable.addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent mouseEvent) {
-                JTable table = (JTable) mouseEvent.getSource();
-                Point point = mouseEvent.getPoint();
-                int row = table.rowAtPoint(point);
-
-                if (mouseEvent.getClickCount() == 2 && table.getSelectedRow() != -1) {
-
-                    Object[] rowValues = new Object[tableModel.getColumnCount()];
-                    for (int i = 0; i < tableModel.getColumnCount(); i++) {
-                        rowValues[i] = tableModel.getValueAt(row, i);
-                    }
-                    dispose();
-                    try {
-                        new FuelMark(Arrays.toString(rowValues), user);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println(Arrays.toString(rowValues));
-                }
-                //установка значение по адресу
-                //tableModel.setValueAt("new Login", 0, 1);
-            }
-        });
-
-        fuelsTable.setModel(tableModel);
-        tableModel.addColumn("Топливо");
-        tableModel.addColumn("Заправка");
-        tableModel.addColumn("Цена за литр");
-
-        fuelsTable.setAutoCreateRowSorter(true);
-    }
-
-    private void loadTableData() {
-        try {
-            List<FuelEntity> fuel = FuelEntityManager.getAllFuels();
-            for (FuelEntity f : fuel) {
-                tableModel.addRow(new Object[]{
-                        f.getFuel_type(),
-                        f.getGas_station_name(),
-                        f.getPrice_one_litr() + "₽"
-                });
-            }
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            DialogUtil.showError("Не удалось загрузить данные");
-        }
-    }
+    //моя реализация
+//    private void initTable() {
+//        fuelsTable.getTableHeader().setReorderingAllowed(false);
+//
+//        tableModel = new DefaultTableModel() {
+//            @Override
+//            public boolean isCellEditable(int row, int column) {
+//                return false;
+//            }
+//        };
+//
+//        //получение записи по двойному клику
+//        fuelsTable.addMouseListener(new MouseAdapter() {
+//            public void mousePressed(MouseEvent mouseEvent) {
+//                JTable table = (JTable) mouseEvent.getSource();
+//                Point point = mouseEvent.getPoint();
+//                int row = table.rowAtPoint(point);
+//
+//                if (mouseEvent.getClickCount() == 2 && table.getSelectedRow() != -1) {
+//
+//                    Object[] rowValues = new Object[tableModel.getColumnCount()];
+//                    for (int i = 0; i < tableModel.getColumnCount(); i++) {
+//                        rowValues[i] = tableModel.getValueAt(row, i);
+//                    }
+//                    dispose();
+//                    try {
+//                        new FuelMark(Arrays.toString(rowValues), user);
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                    System.out.println(Arrays.toString(rowValues));
+//                }
+//                //установка значение по адресу
+//                //tableModel.setValueAt("new Login", 0, 1);
+//            }
+//        });
+//
+//        fuelsTable.setModel(tableModel);
+//        tableModel.addColumn("Топливо");
+//        tableModel.addColumn("Заправка");
+//        tableModel.addColumn("Цена за литр");
+//
+//        fuelsTable.setAutoCreateRowSorter(true);
+//    }
+//
+//    private void loadTableData() {
+//        try {
+//            List<FuelEntity> fuel = FuelEntityManager.getAllFuels();
+//            for (FuelEntity f : fuel) {
+//                tableModel.addRow(new Object[]{
+//                        f.getFuel_type(),
+//                        f.getGas_station_name(),
+//                        f.getPrice_one_litr() + "₽"
+//                });
+//            }
+//
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//            DialogUtil.showError("Не удалось загрузить данные");
+//        }
+//    }
 
     private void initProperties() {
         fuelButton.setBorder(null);
@@ -187,7 +269,7 @@ public class MainForm extends BaseForm {
         searchField.setBorder(null);
         accountButton.setBorder(null);
         statisticButton.setBorder(null);
-        addFuelButton.setBorder(null);
+        editFuelsButton.setBorder(null);
 
         statisticButton.setBackground(new Color(39, 193, 167));
         statisticButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
@@ -204,19 +286,19 @@ public class MainForm extends BaseForm {
                 statisticButton.setBackground(new Color(39, 193, 167));
             }
         });
-        addFuelButton.setBackground(new Color(39, 193, 167));
-        addFuelButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
-        addFuelButton.setBorderPainted(false);
+        editFuelsButton.setBackground(new Color(39, 193, 167));
+        editFuelsButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
+        editFuelsButton.setBorderPainted(false);
 
-        addFuelButton.setBorder(new EmptyBorder(10, 30, 10, 30));
-        addFuelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        editFuelsButton.setBorder(new EmptyBorder(10, 30, 10, 30));
+        editFuelsButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                addFuelButton.setBackground(new Color(32, 153, 129));
-                addFuelButton.setText("<html><font color='white'>Добавить</font></html>");
+                editFuelsButton.setBackground(new Color(32, 153, 129));
+                editFuelsButton.setText("<html><font color='white'>Редактировать</font></html>");
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                addFuelButton.setBackground(new Color(39, 193, 167));
+                editFuelsButton.setBackground(new Color(39, 193, 167));
             }
         });
 
@@ -255,7 +337,7 @@ public class MainForm extends BaseForm {
         return 600;
     }
 
-    public DefaultTableModel getTableModel() {
+    public CustomTableModel<FuelEntity> getTableModel() {
         return tableModel;
     }
 }

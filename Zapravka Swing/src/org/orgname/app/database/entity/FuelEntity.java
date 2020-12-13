@@ -1,14 +1,16 @@
 package org.orgname.app.database.entity;
 
 public class FuelEntity {
-    private String gas_station_name;
     private int id_fuel;
     private int fuel_code;
     private String fuel_type;
+    private String gas_station_name;
+    private String gas_station_address;
     private String unit;
     private int price_one_litr;
     private int fuel_amount;
     private int firm_id_firm;
+    private int id_gas_station;
 
     public FuelEntity(int id_fuel, int fuel_code, String fuel_type, String unit, int price_one_litr,
                       int fuel_amount, int firm_id_firm) {
@@ -23,21 +25,28 @@ public class FuelEntity {
 
     public FuelEntity(String fuel_type, String gas_station_name, int price_one_litr) {
         this.fuel_type = fuel_type;
-        this.gas_station_name=gas_station_name;
+        this.gas_station_name = gas_station_name;
         this.price_one_litr = price_one_litr;
+    }
+
+    public FuelEntity(int id_fuel,
+                      String fuel_type, int price_one_litr,
+                      int fuel_amount, int id_gas_station, String gas_station_name, String gas_station_address) {
+        this.id_fuel = id_fuel;
+        this.fuel_type = fuel_type;
+        this.price_one_litr = price_one_litr;
+        this.fuel_amount = fuel_amount;
+        this.id_gas_station = id_gas_station;
+        this.gas_station_name = gas_station_name;
+        this.gas_station_address = gas_station_address;
     }
 
     @Override
     public String toString() {
-        return "FuelEntity{" +
-                "id_fuel=" + id_fuel +
-                ", fuel_code=" + fuel_code +
-                ", fuel_type='" + fuel_type + '\'' +
-                ", unit='" + unit + '\'' +
-                ", price_one_litr=" + price_one_litr +
-                ", fuel_amount=" + fuel_amount +
-                ", firm_id_firm=" + firm_id_firm +
-                '}';
+        return fuel_type + '\n' +
+                "АЗС " + gas_station_address+ '\n' +
+                "Адрес " + gas_station_name + '\n' +
+                "Запас топлива " + fuel_amount;
     }
 
     public int getId_fuel() {
@@ -62,6 +71,22 @@ public class FuelEntity {
 
     public void setFuel_type(String fuel_type) {
         this.fuel_type = fuel_type;
+    }
+
+    public String getGas_station_name() {
+        return gas_station_name;
+    }
+
+    public void setGas_station_name(String gas_station_name) {
+        this.gas_station_name = gas_station_name;
+    }
+
+    public String getGas_station_address() {
+        return gas_station_address;
+    }
+
+    public void setGas_station_address(String gas_station_address) {
+        this.gas_station_address = gas_station_address;
     }
 
     public String getUnit() {
@@ -96,11 +121,11 @@ public class FuelEntity {
         this.firm_id_firm = firm_id_firm;
     }
 
-    public String getGas_station_name() {
-        return gas_station_name;
+    public int getId_gas_station() {
+        return id_gas_station;
     }
 
-    public void setGas_station_name(String gas_station_name) {
-        this.gas_station_name = gas_station_name;
+    public void setId_gas_station(int id_gas_station) {
+        this.id_gas_station = id_gas_station;
     }
 }

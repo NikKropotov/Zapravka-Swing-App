@@ -111,10 +111,6 @@ public class AuthontifForm extends BaseForm {
         });
     }
 
-    private ImageIcon getIcon(ImageIcon icon1) {
-        return icon1;
-    }
-
     @Override
     public int getFormWidth() {
         return 800;

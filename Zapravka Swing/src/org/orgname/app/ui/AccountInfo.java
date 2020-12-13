@@ -1,14 +1,24 @@
 package org.orgname.app.ui;
 
+import org.orgname.app.Application;
+import org.orgname.app.database.entity.DailySaleEntity;
 import org.orgname.app.database.entity.UserEntity;
+import org.orgname.app.database.manager.DailySaleEntityManager;
 import org.orgname.app.util.BaseForm;
 import org.orgname.app.util.DialogUtil;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
 
 public class AccountInfo extends BaseForm {
-
+    private final DailySaleEntityManager dailySaleEntityManager = new DailySaleEntityManager(Application.getInstance().getDatabase());
+    private DefaultTableModel histoyTableModel;
     private final UserEntity user;
     private JPanel mainPanel;
     private JPanel navMenu;
@@ -19,6 +29,10 @@ public class AccountInfo extends BaseForm {
     private JButton exitButton;
     private JPanel mainContent;
     private JTextArea accountInfoArea;
+    private JScrollPane tableScrollPane;
+    private JTable historyTable;
+    private JLabel marginLabel;
+    private JLabel margin2Label;
 
     public AccountInfo(UserEntity user) {
         this.user = user;
@@ -26,7 +40,8 @@ public class AccountInfo extends BaseForm {
         initButtton();
         initProperties();
         setVisible(true);
-
+        initTable();
+        loadTableData();
         accountInfoArea.setEditable(false);
         initUserData();
         setVisible(true);
@@ -60,6 +75,61 @@ public class AccountInfo extends BaseForm {
     private void back() {
         dispose();
         new MainForm(user);
+    }
+
+    private void initTable() {
+        historyTable.getTableHeader().setReorderingAllowed(false);
+
+        histoyTableModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        //получение записи по двойному клику
+        historyTable.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent mouseEvent) {
+                JTable table = (JTable) mouseEvent.getSource();
+                Point point = mouseEvent.getPoint();
+                int row = table.rowAtPoint(point);
+
+                if (mouseEvent.getClickCount() == 2 && table.getSelectedRow() != -1) {
+
+                    Object[] rowValues = new Object[histoyTableModel.getColumnCount()];
+                    for (int i = 0; i < histoyTableModel.getColumnCount(); i++) {
+                        rowValues[i] = histoyTableModel.getValueAt(row, i);
+                    }
+                    System.out.println(Arrays.toString(rowValues));
+                }
+            }
+        });
+
+        historyTable.setModel(histoyTableModel);
+        histoyTableModel.addColumn("Дата и время");
+        histoyTableModel.addColumn("Марка топлива");
+        histoyTableModel.addColumn("Количество");
+        histoyTableModel.addColumn("Счёт");
+
+        historyTable.setAutoCreateRowSorter(true);
+    }
+
+    private void loadTableData() {
+        try {
+            List<DailySaleEntity> sales = DailySaleEntityManager.getHistorySale(user.getId_client());
+            for (DailySaleEntity s : sales) {
+                histoyTableModel.addRow(new Object[]{
+                        s.getDaily_sale_date(),
+                        s.getDaily_fuel_type(),
+                        s.getDaily_fuel_amount(),
+                        s.getSale_price()
+                });
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            DialogUtil.showError("Не удалось загрузить данные");
+        }
     }
 
     private void initProperties() {
