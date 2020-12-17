@@ -40,6 +40,8 @@ public class FuelMark extends BaseForm {
     private JButton mathButton;
     private JScrollPane tableScrollPane;
     private JButton statisticButton;
+    private JButton editFuelButton;
+    private JButton deleteFuelButton;
     private String fuel_name;
     private String gas_name;
     private String price;
@@ -64,20 +66,21 @@ public class FuelMark extends BaseForm {
     private void initUserType() {
         if (user.getAccount_type().equals("Admin")) {
             statisticButton.setVisible(true);
+            editFuelButton.setVisible(true);
+            deleteFuelButton.setVisible(true);
         }
     }
 
     private void initScore() {
-        priceLabel.setText(String.valueOf(fuelEntity.getPrice_one_litr()));
+        priceLabel.setText(fuelEntity.getPrice_one_litr() + "₽");
         int price = fuelEntity.getPrice_one_litr();
         mathButton.addActionListener(e -> {
             try {
                 double amount = Double.parseDouble(amountField.getText());
-                totalLabel.setText(price + " * " + amount);
+                totalLabel.setText(price + "₽" + " * " + amount);
                 double score = price * amount;
-                scoreLabel.setText(String.valueOf(score));
-            }
-            catch (Exception i){
+                scoreLabel.setText(score + "₽");
+            } catch (Exception i) {
                 i.printStackTrace();
                 DialogUtil.showError("Количество введено некорректно");
             }
@@ -187,6 +190,9 @@ public class FuelMark extends BaseForm {
             fuelTable.getColumnModel().getColumn(9).setMinWidth(0);
             fuelTable.getColumnModel().getColumn(9).setMaxWidth(0);
             fuelTable.getColumnModel().getColumn(9).setWidth(0);
+            fuelTable.getColumnModel().getColumn(10).setMinWidth(0);
+            fuelTable.getColumnModel().getColumn(10).setMaxWidth(0);
+            fuelTable.getColumnModel().getColumn(10).setWidth(0);
             fuelTable.setAutoCreateRowSorter(true);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -214,6 +220,23 @@ public class FuelMark extends BaseForm {
         statisticButton.addActionListener(e -> {
             dispose();
             new StatisticForm(user);
+        });
+        editFuelButton.addActionListener(e -> {
+            new editFuelSubFrom(this, fuelEntity);
+        });
+        deleteFuelButton.addActionListener(e -> {
+            System.out.println(fuelEntity.getId_fuel());
+            System.out.println(fuelEntity.getId_gas_station());
+            if (DialogUtil.showConfirm(this, "Вы точно хотите удалить данную запись?")) {
+                try {
+                    fuelEntityManager.deleteFuel_Has_StationById(fuelEntity.getId_fuel(), fuelEntity.getId_gas_station());
+                    fuelEntityManager.deleteFuelById(fuelEntity.getId_fuel());
+                    table2Model.fireTableDataChanged();
+                } catch (SQLException throwables) {
+                    DialogUtil.showError(this, "Не удалось удалить");
+                    throwables.printStackTrace();
+                }
+            }
         });
     }
 

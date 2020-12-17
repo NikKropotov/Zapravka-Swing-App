@@ -11,6 +11,7 @@ public class FuelEntity {
     private int fuel_amount;
     private int firm_id_firm;
     private int id_gas_station;
+    private int id_fuel_has_gas_station;
 
     public FuelEntity(int id_fuel, int fuel_code, String fuel_type, String unit, int price_one_litr,
                       int fuel_amount, int firm_id_firm) {
@@ -40,6 +41,40 @@ public class FuelEntity {
         this.id_gas_station = id_gas_station;
         this.gas_station_name = gas_station_name;
         this.gas_station_address = gas_station_address;
+    }
+
+    public FuelEntity(int fuel_code, String fuel_type, String unit, int price_one_litr, int fuel_amount, int firm_id_firm) {
+        this.fuel_code = fuel_code;
+        this.fuel_type = fuel_type;
+        this.unit = unit;
+        this.price_one_litr = price_one_litr;
+        this.fuel_amount = fuel_amount;
+        this.firm_id_firm = firm_id_firm;
+    }
+
+    public FuelEntity(int id_fuel, int id_gas_station) {
+        this.id_fuel = id_fuel;
+        this.id_gas_station = id_gas_station;
+    }
+
+    public FuelEntity(int id_gas_station) {
+        this.id_gas_station = id_gas_station;
+    }
+
+    public static boolean isCodeIncorrect(String s) {
+        return s.length() < 2 || s.length() > 11;
+    }
+
+    public static boolean isTypeIncorrect(String s) {
+        return s.length() < 3 || s.length() > 20;
+    }
+
+    public static boolean isUnitIncorrect(String s) {
+        return s.length() < 1 || s.length() > 20;
+    }
+
+    public static boolean isFirmIncorrect(String s) {
+        return s.length() == 0;
     }
 
     @Override
@@ -128,5 +163,13 @@ public class FuelEntity {
 
     public void setId_gas_station(int id_gas_station) {
         this.id_gas_station = id_gas_station;
+    }
+
+    public int getId_fuel_has_gas_station() {
+        return id_fuel_has_gas_station;
+    }
+
+    public void setId_fuel_has_gas_station(int id_fuel_has_gas_station) {
+        this.id_fuel_has_gas_station = id_fuel_has_gas_station;
     }
 }

@@ -126,7 +126,7 @@ public class StatisticForm extends BaseForm {
         });
         firmButton.addActionListener(e -> {
             dispose();
-            new MainForm(user);
+            new FirmForm(user);
         });
         fuelButton.addActionListener(e -> {
             dispose();

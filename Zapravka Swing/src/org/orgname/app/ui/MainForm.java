@@ -21,6 +21,7 @@ import java.sql.SQLException;
 public class MainForm extends BaseForm {
     private final FuelEntityManager fuelEntityManager = new FuelEntityManager(Application.getInstance().getDatabase());
     private final StationEntityManager stationEntityManager = new StationEntityManager(Application.getInstance().getDatabase());
+    private FuelEntity fuelEntity;
     private final UserEntity user;
 //    private ObjectTableModel<FuelEntity> tableModel;
     private CustomTableModel<FuelEntity> tableModel;
@@ -35,7 +36,7 @@ public class MainForm extends BaseForm {
     private JTextArea fuelTextArea;
     private JButton accountButton;
     private JTable fuelsTable;
-    private JButton editFuelsButton;
+    private JButton addFuelsButton;
     private JButton statisticButton;
     private JLabel logoLabel;
     private JLabel mainLabe;
@@ -55,7 +56,7 @@ public class MainForm extends BaseForm {
 
     private void initUserType() {
         if (user.getAccount_type().equals("Admin")) {
-            editFuelsButton.setVisible(true);
+            addFuelsButton.setVisible(true);
             statisticButton.setVisible(true);
         }
     }
@@ -76,6 +77,9 @@ public class MainForm extends BaseForm {
         firmButton.addActionListener(e -> {
             dispose();
             new FirmForm(user);
+        });
+        addFuelsButton.addActionListener(e -> {
+            new addFuelSubForm(this, fuelEntity);
         });
     }
 
@@ -150,6 +154,9 @@ public class MainForm extends BaseForm {
             fuelsTable.getColumnModel().getColumn(9).setMinWidth(0);
             fuelsTable.getColumnModel().getColumn(9).setMaxWidth(0);
             fuelsTable.getColumnModel().getColumn(9).setWidth(0);
+            fuelsTable.getColumnModel().getColumn(10).setMinWidth(0);
+            fuelsTable.getColumnModel().getColumn(10).setMaxWidth(0);
+            fuelsTable.getColumnModel().getColumn(10).setWidth(0);
             fuelsTable.setAutoCreateRowSorter(true);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -274,21 +281,21 @@ public class MainForm extends BaseForm {
         searchField.setBorder(null);
         accountButton.setBorder(null);
         statisticButton.setBorder(null);
-        editFuelsButton.setBorder(null);
+        addFuelsButton.setBorder(null);
 
-        editFuelsButton.setBackground(new Color(39, 193, 167));
-        editFuelsButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
-        editFuelsButton.setBorderPainted(false);
+        addFuelsButton.setBackground(new Color(39, 193, 167));
+        addFuelsButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
+        addFuelsButton.setBorderPainted(false);
 
-        editFuelsButton.setBorder(new EmptyBorder(10, 30, 10, 30));
-        editFuelsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        addFuelsButton.setBorder(new EmptyBorder(10, 30, 10, 30));
+        addFuelsButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                editFuelsButton.setBackground(new Color(32, 153, 129));
-                editFuelsButton.setText("<html><font color='white'>Редактировать</font></html>");
+                addFuelsButton.setBackground(new Color(32, 153, 129));
+                addFuelsButton.setText("<html><font color='white'>Добавить топливо</font></html>");
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                editFuelsButton.setBackground(new Color(39, 193, 167));
+                addFuelsButton.setBackground(new Color(39, 193, 167));
             }
         });
 

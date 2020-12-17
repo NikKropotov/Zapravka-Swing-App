@@ -29,4 +29,3 @@ public abstract class BaseSubForm<T extends BaseForm> extends BaseForm {
         mainForm.setVisible(true);
     }
 }
-
