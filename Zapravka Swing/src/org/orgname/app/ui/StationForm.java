@@ -32,7 +32,6 @@ public class StationForm extends BaseForm {
     private JLabel logoLabel;
     private JButton statisticButton;
     private JLabel mainLabe;
-    private JButton editStationsButton;
     private JPanel mainContent;
     private JScrollPane stationListScroll;
 
@@ -49,7 +48,6 @@ public class StationForm extends BaseForm {
     private void initUserType() {
         if (user.getAccount_type().equals("Admin")) {
             statisticButton.setVisible(true);
-            editStationsButton.setVisible(true);
         }
     }
 
@@ -91,30 +89,12 @@ public class StationForm extends BaseForm {
 
     private void initProperties() {
         navMenu.setPreferredSize(new Dimension(160, -1));
-//        stationListScroll.setBorder(null);
         fuelButton.setBorder(null);
         gasButton.setBorder(null);
         firmButton.setBorder(null);
         searchField.setBorder(null);
         accountButton.setBorder(null);
         statisticButton.setBorder(null);
-        editStationsButton.setBorder(null);
-
-        editStationsButton.setBackground(new Color(39, 193, 167));
-        editStationsButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
-        editStationsButton.setBorderPainted(false);
-
-        editStationsButton.setBorder(new EmptyBorder(10, 30, 10, 30));
-        editStationsButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                editStationsButton.setBackground(new Color(32, 153, 129));
-                editStationsButton.setText("<html><font color='white'>Редактировать</font></html>");
-            }
-
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                editStationsButton.setBackground(new Color(39, 193, 167));
-            }
-        });
 
         accountButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {

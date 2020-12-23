@@ -178,7 +178,7 @@
             <properties>
               <background color="-14171737"/>
               <caretColor color="-1"/>
-              <focusable value="true"/>
+              <focusable value="false"/>
               <font name="Arial" size="14" style="0"/>
               <foreground color="-1"/>
             </properties>

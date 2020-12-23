@@ -32,6 +32,29 @@ public class DailySaleEntityManager {
         }
     }
 
+    public static List<DailySaleEntity> getStatisticTopFuelsByDate(int m) throws SQLException {
+        try (Connection c = database.getConnection()) {
+            String sql = "select daily_fuel_type, count(*) AS max_fuel_type \n" +
+                    "from daily_sale \n" +
+                    "where MONTH(daily_sale_date) = ? \n" +
+                    "group by `daily_fuel_type` \n" +
+                    "order by max_fuel_type desc;";
+            PreparedStatement s = c.prepareStatement(sql);
+            s.setInt(1, m);
+
+            ResultSet result = s.executeQuery();
+
+            List<DailySaleEntity> sales = new ArrayList<>();
+            while (result.next()) {
+                sales.add(new DailySaleEntity(
+                        result.getString("daily_fuel_type"),
+                        result.getString("max_fuel_type")
+                ));
+            }
+            return sales;
+        }
+    }
+
     public static List<DailySaleEntity> getHistorySale(int id) throws SQLException {
         try (Connection c = database.getConnection()) {
             String sql = "select daily_sale.`daily_sale_date`, \n" +

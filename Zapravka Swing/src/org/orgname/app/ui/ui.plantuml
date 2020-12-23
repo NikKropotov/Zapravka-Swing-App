@@ -1,0 +1,384 @@
+@startuml
+
+title __UI's Class Diagram__\n
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.AccountInfo {
+          - accountInfoArea : JTextArea
+          - backButton : JButton
+          - exitButton : JButton
+          - firmButton : JButton
+          - fuelButton : JButton
+          - gasButton : JButton
+          - historyTable : JTable
+          - histoyTableModel : DefaultTableModel
+          - mainContent : JPanel
+          - mainPanel : JPanel
+          - margin2Label : JLabel
+          - marginLabel : JLabel
+          - navMenu : JPanel
+          - statisticButton : JButton
+          - tableScrollPane : JScrollPane
+          + AccountInfo()
+          + getFormHeight()
+          + getFormWidth()
+          + initUserData()
+          - back()
+          - initButtton()
+          - initProperties()
+          - initTable()
+          - initUserType()
+          - loadTableData()
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.AuthontifForm {
+          - enterButton : JButton
+          - enterPanel : JPanel
+          - forgotPassword : JButton
+          - loginField : JTextField
+          - loginLabel : JLabel
+          - mainPanel : JPanel
+          - mainTitle : JLabel
+          - marginLabel : JLabel
+          - passwordField : JPasswordField
+          - passwordLabel : JLabel
+          - regButton : JButton
+          - regPanel : JPanel
+          - regText1 : JLabel
+          - regText2 : JLabel
+          - regTitleLabel : JLabel
+          + AuthontifForm()
+          + getFormHeight()
+          + getFormWidth()
+          - initButtons()
+          - initProperties()
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.FirmForm {
+          - accountButton : JButton
+          - firmButton : JButton
+          - firmList : JList
+          - firmListModel : DefaultListModel<String>
+          - firmListScroll : JScrollPane
+          - fuelButton : JButton
+          - gasButton : JButton
+          - logoLabel : JLabel
+          - mainContent : JPanel
+          - mainLabe : JLabel
+          - mainPanel : JPanel
+          - marginLabel : JLabel
+          - navMenu : JPanel
+          - searchField : JTextField
+          - statisticButton : JButton
+          + FirmForm()
+          + getFormHeight()
+          + getFormWidth()
+          - initButtton()
+          - initList()
+          - initProperties()
+          - initUserType()
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.ForgotPassword {
+          - enterButton : JButton
+          - enterPanel : JPanel
+          - enterTitle : JLabel
+          - loginField : JTextField
+          - loginLabel : JLabel
+          - mainPanel : JPanel
+          - mainTitle : JLabel
+          - marginLabel : JLabel
+          - passwordField : JPasswordField
+          - passwordField2 : JPasswordField
+          - passwordLabel : JLabel
+          - regPanel : JPanel
+          - textLabel : JLabel
+          - updatePasswordButton : JButton
+          + ForgotPassword()
+          + getFormHeight()
+          + getFormWidth()
+          - initButtons()
+          - initProperties()
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.FuelMark {
+          - accountButton : JButton
+          - amountField : JTextField
+          - backButton : JButton
+          - deleteFuelButton : JButton
+          - editFuelButton : JButton
+          - firmButton : JButton
+          - fuelArea : JTextArea
+          - fuelButton : JButton
+          - fuelTable : JTable
+          - fuel_name : String
+          - gasButton : JButton
+          - gas_name : String
+          - mainContent : JPanel
+          - mainPanel : JPanel
+          - mathButton : JButton
+          - navMenu : JPanel
+          - price : String
+          - priceLabel : JLabel
+          - rowIndex : int
+          - scoreLabel : JLabel
+          - statisticButton : JButton
+          - table2Model : CustomTableModel<FuelEntity>
+          - tableScrollPane : JScrollPane
+          - totalLabel : JLabel
+          + FuelMark()
+          + getFormHeight()
+          + getFormWidth()
+          + getTableModel()
+          - initButtton()
+          - initProperties()
+          - initScore()
+          - initTable()
+          - initUserType()
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.MainForm {
+          - JScrollFuelPanel : JScrollPane
+          - accountButton : JButton
+          - addFuelsButton : JButton
+          - firmButton : JButton
+          - fuelButton : JButton
+          - fuelTextArea : JTextArea
+          - fuelsTable : JTable
+          - gasButton : JButton
+          - logoLabel : JLabel
+          - mainContent : JPanel
+          - mainLabe : JLabel
+          - mainPanel : JPanel
+          - navMenu : JPanel
+          - searchField : JTextField
+          - statisticButton : JButton
+          - tableModel : CustomTableModel<FuelEntity>
+          - tableScrollPane : JScrollPane
+          + MainForm()
+          + getFormHeight()
+          + getFormWidth()
+          + getTableModel()
+          - initButtton()
+          - initProperties()
+          - initTable()
+          - initUserType()
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.RegistrationForm {
+          - enterButton : JButton
+          - enterPanel : JPanel
+          - enterTitle : JLabel
+          - loginLabel : JLabel
+          - mainPanel : JPanel
+          - marginLabel : JLabel
+          - nameLabel : JLabel
+          - passwordLabel : JLabel
+          - phoneLable : JLabel
+          - regTitle : JLabel
+          - reg_loginField : JTextField
+          - reg_name_surnameField : JTextField
+          - reg_passwordField : JPasswordField
+          - reg_phoneField : JTextField
+          - registrationButton : JButton
+          - registrationPanel : JPanel
+          - text2Label : JLabel
+          + RegistrationForm()
+          + getFormHeight()
+          + getFormWidth()
+          - back()
+          - initButtons()
+          - initProperties()
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.StationForm {
+          - accountButton : JButton
+          - firmButton : JButton
+          - fuelButton : JButton
+          - gasButton : JButton
+          - logoLabel : JLabel
+          - mainContent : JPanel
+          - mainLabe : JLabel
+          - mainPanel : JPanel
+          - marginLabel : JLabel
+          - navMenu : JPanel
+          - searchField : JTextField
+          - stationList : JList
+          - stationListModel : DefaultListModel<String>
+          - stationListScroll : JScrollPane
+          - statisticButton : JButton
+          + StationForm()
+          + getFormHeight()
+          + getFormWidth()
+          - initButtton()
+          - initList()
+          - initProperties()
+          - initUserType()
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.StatisticForm {
+          - accountButton : JButton
+          - backButton : JButton
+          - comboBox : JComboBox<String>
+          - firmButton : JButton
+          - fuelButton : JButton
+          - gasButton : JButton
+          - logoLabel : JLabel
+          - mainContent : JPanel
+          - mainLabe : JLabel
+          - mainPanel : JPanel
+          - navMenu : JPanel
+          - statTable : JTable
+          - statisTableModel : DefaultTableModel
+          - statisticButton : JButton
+          - tableScrollPane : JScrollPane
+          + StatisticForm()
+          + getFormHeight()
+          + getFormWidth()
+          + getStatisTableModel()
+          - initButtton()
+          - initComboBox()
+          - initProperties()
+          - initTable()
+          - initUserType()
+          - loadTableData()
+          - loadTableDataByDate()
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.addFuelSubForm {
+          - addFuelButton : JButton
+          - amountField : JTextField
+          - comboBox1 : JComboBox<String>
+          - firmField : JTextField
+          - fuel_codeField : JTextField
+          - fuel_typeField : JTextField
+          - mainPanel : JPanel
+          - marginLabel : JLabel
+          - priceField : JTextField
+          - unitField : JTextField
+          + addFuelSubForm()
+          + getFormHeight()
+          + getFormWidth()
+          - initButtons()
+          - initComboBox()
+          - initProperties()
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.editFuelSubFrom {
+          - amountField : JTextField
+          - comboBox1 : JComboBox<String>
+          - editFuelButton : JButton
+          - firmField : JTextField
+          - fuel_codeField : JTextField
+          - fuel_typeField : JTextField
+          - idFuelField : JTextField
+          - mainPanel : JPanel
+          - marginLabel : JLabel
+          - priceField : JTextField
+          - unitField : JTextField
+          + editFuelSubFrom()
+          + getFormHeight()
+          + getFormWidth()
+          - initButtons()
+          - initFields()
+          - initProperties()
+      }
+    }
+  }
+  
+
+  org.orgname.app.ui.AccountInfo -up-|> org.orgname.app.util.BaseForm
+  org.orgname.app.ui.AccountInfo o-- org.orgname.app.database.manager.DailySaleEntityManager : dailySaleEntityManager
+  org.orgname.app.ui.AccountInfo o-- org.orgname.app.database.entity.UserEntity : user
+  org.orgname.app.ui.AuthontifForm -up-|> org.orgname.app.util.BaseForm
+  org.orgname.app.ui.AuthontifForm o-- org.orgname.app.database.manager.UserEntityManager : userEntityManager
+  org.orgname.app.ui.FirmForm -up-|> org.orgname.app.util.BaseForm
+  org.orgname.app.ui.FirmForm o-- org.orgname.app.database.manager.FirmEntityManager : firmEntityManager
+  org.orgname.app.ui.FirmForm o-- org.orgname.app.database.entity.UserEntity : user
+  org.orgname.app.ui.ForgotPassword -up-|> org.orgname.app.util.BaseForm
+  org.orgname.app.ui.ForgotPassword o-- org.orgname.app.database.manager.UserEntityManager : userEntityManager
+  org.orgname.app.ui.FuelMark -up-|> org.orgname.app.util.BaseForm
+  org.orgname.app.ui.FuelMark o-- org.orgname.app.database.entity.FuelEntity : fuelEntity
+  org.orgname.app.ui.FuelMark o-- org.orgname.app.database.manager.FuelEntityManager : fuelEntityManager
+  org.orgname.app.ui.FuelMark o-- org.orgname.app.database.entity.UserEntity : user
+  org.orgname.app.ui.MainForm -up-|> org.orgname.app.util.BaseForm
+  org.orgname.app.ui.MainForm o-- org.orgname.app.database.entity.FuelEntity : fuelEntity
+  org.orgname.app.ui.MainForm o-- org.orgname.app.database.manager.FuelEntityManager : fuelEntityManager
+  org.orgname.app.ui.MainForm o-- org.orgname.app.database.manager.StationEntityManager : stationEntityManager
+  org.orgname.app.ui.MainForm o-- org.orgname.app.database.entity.UserEntity : user
+  org.orgname.app.ui.RegistrationForm -up-|> org.orgname.app.util.BaseForm
+  org.orgname.app.ui.RegistrationForm o-- org.orgname.app.database.manager.UserEntityManager : userEntityManager
+  org.orgname.app.ui.StationForm -up-|> org.orgname.app.util.BaseForm
+  org.orgname.app.ui.StationForm o-- org.orgname.app.database.manager.StationEntityManager : stationEntityManager
+  org.orgname.app.ui.StationForm o-- org.orgname.app.database.entity.UserEntity : user
+  org.orgname.app.ui.StatisticForm -up-|> org.orgname.app.util.BaseForm
+  org.orgname.app.ui.StatisticForm o-- org.orgname.app.database.manager.DailySaleEntityManager : dailySaleEntityManager
+  org.orgname.app.ui.StatisticForm o-- org.orgname.app.database.manager.FuelEntityManager : fuelEntityManager
+  org.orgname.app.ui.StatisticForm o-- org.orgname.app.database.entity.UserEntity : user
+  org.orgname.app.ui.addFuelSubForm -up-|> org.orgname.app.util.BaseSubForm
+  org.orgname.app.ui.addFuelSubForm o-- org.orgname.app.database.entity.FuelEntity : fuelEntity
+  org.orgname.app.ui.addFuelSubForm o-- org.orgname.app.database.manager.FuelEntityManager : fuelEntityManager
+  org.orgname.app.ui.editFuelSubFrom -up-|> org.orgname.app.util.BaseSubForm
+  org.orgname.app.ui.editFuelSubFrom o-- org.orgname.app.database.entity.FuelEntity : fuelEntity
+  org.orgname.app.ui.editFuelSubFrom o-- org.orgname.app.database.manager.FuelEntityManager : fuelEntityManager
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

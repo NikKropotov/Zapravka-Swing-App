@@ -6,6 +6,7 @@ import org.orgname.app.util.DialogUtil;
 import org.orgname.app.util.MysqlDatabase;
 
 import javax.swing.*;
+import java.awt.*;
 import java.sql.Connection;
 
 public class Application {
@@ -31,6 +32,10 @@ public class Application {
 
     private void initUi() {
         BaseForm.setBaseApplicationTitle("Zapravochka");
+        BaseForm.setBaseApplicationIcon(
+                Toolkit.getDefaultToolkit().getImage(Application.class.getClassLoader().getResource("icon.png"))
+        );
+
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {

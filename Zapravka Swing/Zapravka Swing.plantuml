@@ -1,0 +1,277 @@
+@startuml
+
+title __ZAPRAVKA SWING's Class Diagram__\n
+
+  namespace org.orgname.app {
+    class org.orgname.app.Application {
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace database.entity {
+      class org.orgname.app.database.entity.DailySaleEntity {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace database.entity {
+      class org.orgname.app.database.entity.FirmEntity {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace database.entity {
+      class org.orgname.app.database.entity.FuelEntity {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace database.entity {
+      class org.orgname.app.database.entity.StationEntity {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace database.entity {
+      class org.orgname.app.database.entity.UserEntity {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace database.manager {
+      class org.orgname.app.database.manager.DailySaleEntityManager {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace database.manager {
+      class org.orgname.app.database.manager.FirmEntityManager {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace database.manager {
+      class org.orgname.app.database.manager.FuelEntityManager {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace database.manager {
+      class org.orgname.app.database.manager.StationEntityManager {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace database.manager {
+      class org.orgname.app.database.manager.UserEntityManager {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.AccountInfo {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.AuthontifForm {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.FirmForm {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.ForgotPassword {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.FuelMark {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.MainForm {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.RegistrationForm {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.StationForm {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.StatisticForm {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.addFuelSubForm {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace ui {
+      class org.orgname.app.ui.editFuelSubFrom {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace util {
+      abstract class org.orgname.app.util.BaseForm {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace util {
+      abstract class org.orgname.app.util.BaseSubForm {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace util {
+      class org.orgname.app.util.CustomTableModel {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace util {
+      class org.orgname.app.util.DialogUtil {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace util {
+      class org.orgname.app.util.MysqlDatabase {
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace util {
+      abstract class org.orgname.app.util.ObjectTableModel {
+      }
+    }
+  }
+  
+
+  org.orgname.app.Application o-- org.orgname.app.util.MysqlDatabase : database
+  org.orgname.app.database.manager.UserEntityManager o-- org.orgname.app.util.MysqlDatabase : database
+  org.orgname.app.ui.AccountInfo -up-|> org.orgname.app.util.BaseForm
+  org.orgname.app.ui.AccountInfo o-- org.orgname.app.database.manager.DailySaleEntityManager : dailySaleEntityManager
+  org.orgname.app.ui.AccountInfo o-- org.orgname.app.database.entity.UserEntity : user
+  org.orgname.app.ui.AuthontifForm -up-|> org.orgname.app.util.BaseForm
+  org.orgname.app.ui.AuthontifForm o-- org.orgname.app.database.manager.UserEntityManager : userEntityManager
+  org.orgname.app.ui.FirmForm -up-|> org.orgname.app.util.BaseForm
+  org.orgname.app.ui.FirmForm o-- org.orgname.app.database.manager.FirmEntityManager : firmEntityManager
+  org.orgname.app.ui.FirmForm o-- org.orgname.app.database.entity.UserEntity : user
+  org.orgname.app.ui.ForgotPassword -up-|> org.orgname.app.util.BaseForm
+  org.orgname.app.ui.ForgotPassword o-- org.orgname.app.database.manager.UserEntityManager : userEntityManager
+  org.orgname.app.ui.FuelMark -up-|> org.orgname.app.util.BaseForm
+  org.orgname.app.ui.FuelMark o-- org.orgname.app.database.entity.FuelEntity : fuelEntity
+  org.orgname.app.ui.FuelMark o-- org.orgname.app.database.manager.FuelEntityManager : fuelEntityManager
+  org.orgname.app.ui.FuelMark o-- org.orgname.app.database.entity.UserEntity : user
+  org.orgname.app.ui.MainForm -up-|> org.orgname.app.util.BaseForm
+  org.orgname.app.ui.MainForm o-- org.orgname.app.database.entity.FuelEntity : fuelEntity
+  org.orgname.app.ui.MainForm o-- org.orgname.app.database.manager.FuelEntityManager : fuelEntityManager
+  org.orgname.app.ui.MainForm o-- org.orgname.app.database.manager.StationEntityManager : stationEntityManager
+  org.orgname.app.ui.MainForm o-- org.orgname.app.database.entity.UserEntity : user
+  org.orgname.app.ui.RegistrationForm -up-|> org.orgname.app.util.BaseForm
+  org.orgname.app.ui.RegistrationForm o-- org.orgname.app.database.manager.UserEntityManager : userEntityManager
+  org.orgname.app.ui.StationForm -up-|> org.orgname.app.util.BaseForm
+  org.orgname.app.ui.StationForm o-- org.orgname.app.database.manager.StationEntityManager : stationEntityManager
+  org.orgname.app.ui.StationForm o-- org.orgname.app.database.entity.UserEntity : user
+  org.orgname.app.ui.StatisticForm -up-|> org.orgname.app.util.BaseForm
+  org.orgname.app.ui.StatisticForm o-- org.orgname.app.database.manager.DailySaleEntityManager : dailySaleEntityManager
+  org.orgname.app.ui.StatisticForm o-- org.orgname.app.database.manager.FuelEntityManager : fuelEntityManager
+  org.orgname.app.ui.StatisticForm o-- org.orgname.app.database.entity.UserEntity : user
+  org.orgname.app.ui.addFuelSubForm -up-|> org.orgname.app.util.BaseSubForm
+  org.orgname.app.ui.addFuelSubForm o-- org.orgname.app.database.entity.FuelEntity : fuelEntity
+  org.orgname.app.ui.addFuelSubForm o-- org.orgname.app.database.manager.FuelEntityManager : fuelEntityManager
+  org.orgname.app.ui.editFuelSubFrom -up-|> org.orgname.app.util.BaseSubForm
+  org.orgname.app.ui.editFuelSubFrom o-- org.orgname.app.database.entity.FuelEntity : fuelEntity
+  org.orgname.app.ui.editFuelSubFrom o-- org.orgname.app.database.manager.FuelEntityManager : fuelEntityManager
+  org.orgname.app.util.BaseForm -up-|> javax.swing.JFrame
+  org.orgname.app.util.BaseSubForm -up-|> org.orgname.app.util.BaseForm
+  org.orgname.app.util.BaseSubForm o-- T : mainForm
+  org.orgname.app.util.CustomTableModel -up-|> javax.swing.table.AbstractTableModel
+  org.orgname.app.util.ObjectTableModel -up-|> javax.swing.table.DefaultTableModel
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

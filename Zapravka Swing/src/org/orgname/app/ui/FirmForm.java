@@ -30,7 +30,6 @@ public class FirmForm extends BaseForm {
     private JPanel mainContent;
     private JLabel mainLabe;
     private JTextField searchField;
-    private JButton editFirmsButton;
     private JList firmList;
     private JScrollPane firmListScroll;
     private JLabel marginLabel;
@@ -49,7 +48,6 @@ public class FirmForm extends BaseForm {
     private void initUserType() {
         if (user.getAccount_type().equals("Admin")) {
             statisticButton.setVisible(true);
-            editFirmsButton.setVisible(true);
         }
     }
 
@@ -86,8 +84,6 @@ public class FirmForm extends BaseForm {
             dispose();
             new StatisticForm(user);
         });
-
-        // add edit button
     }
 
     private void initProperties() {
@@ -97,23 +93,7 @@ public class FirmForm extends BaseForm {
         accountButton.setBorder(null);
         searchField.setBorder(null);
         statisticButton.setBorder(null);
-        editFirmsButton.setBorder(null);
 
-        editFirmsButton.setBackground(new Color(39, 193, 167));
-        editFirmsButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
-        editFirmsButton.setBorderPainted(false);
-
-        editFirmsButton.setBorder(new EmptyBorder(10, 30, 10, 30));
-        editFirmsButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                editFirmsButton.setBackground(new Color(32, 153, 129));
-                editFirmsButton.setText("<html><font color='white'>Редактировать</font></html>");
-            }
-
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                editFirmsButton.setBackground(new Color(39, 193, 167));
-            }
-        });
         accountButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 accountButton.setBorder(null);

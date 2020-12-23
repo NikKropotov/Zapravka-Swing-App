@@ -5,9 +5,13 @@ import java.awt.*;
 
 public abstract class BaseForm extends JFrame {
     private static String baseApplicationTitle;
+    private static Image baseApplicationIcon = null;
 
     public BaseForm() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        if (baseApplicationIcon != null) {
+            setIconImage(baseApplicationIcon);
+        }
         setMinimumSize(new Dimension(getFormWidth(), getFormHeight()));
         setTitle(baseApplicationTitle == null ? "Application" : baseApplicationTitle);
         setLocation(
@@ -26,5 +30,13 @@ public abstract class BaseForm extends JFrame {
 
     public static void setBaseApplicationTitle(String baseApplicationTitle) {
         BaseForm.baseApplicationTitle = baseApplicationTitle;
+    }
+
+    public static Image getBaseApplicationIcon() {
+        return baseApplicationIcon;
+    }
+
+    public static void setBaseApplicationIcon(Image baseApplicationIcon) {
+        BaseForm.baseApplicationIcon = baseApplicationIcon;
     }
 }

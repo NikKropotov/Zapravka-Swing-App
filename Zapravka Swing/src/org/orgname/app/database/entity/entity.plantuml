@@ -1,0 +1,191 @@
+@startuml
+
+title __ENTITY's Class Diagram__\n
+
+  namespace org.orgname.app {
+    namespace database.entity {
+      class org.orgname.app.database.entity.DailySaleEntity {
+          - client_id_client : int
+          - daily_fuel_amount : String
+          - daily_fuel_type : String
+          - daily_sale_date : String
+          - fuel_has_gas_station_id_fuel_has_gas_station : int
+          - id_daily_sale : int
+          - max_fuel_type : String
+          - sale_price : String
+          + DailySaleEntity()
+          + DailySaleEntity()
+          + DailySaleEntity()
+          + getClient_id_client()
+          + getDaily_fuel_amount()
+          + getDaily_fuel_type()
+          + getDaily_sale_date()
+          + getFuel_has_gas_station_id_fuel_has_gas_station()
+          + getId_daily_sale()
+          + getMax_fuel_type()
+          + getSale_price()
+          + setClient_id_client()
+          + setDaily_fuel_amount()
+          + setDaily_fuel_type()
+          + setDaily_sale_date()
+          + setFuel_has_gas_station_id_fuel_has_gas_station()
+          + setId_daily_sale()
+          + setMax_fuel_type()
+          + setSale_price()
+          + toString()
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace database.entity {
+      class org.orgname.app.database.entity.FirmEntity {
+          - firm_address : String
+          - firm_name : String
+          - firm_phone : String
+          - id_firm : int
+          + FirmEntity()
+          + FirmEntity()
+          + getFirm_address()
+          + getFirm_name()
+          + getFirm_phone()
+          + getId_firm()
+          + setFirm_address()
+          + setFirm_name()
+          + setFirm_phone()
+          + setId_firm()
+          + toString()
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace database.entity {
+      class org.orgname.app.database.entity.FuelEntity {
+          - firm_id_firm : int
+          - fuel_amount : int
+          - fuel_code : int
+          - fuel_type : String
+          - gas_station_address : String
+          - gas_station_name : String
+          - id_fuel : int
+          - id_fuel_has_gas_station : int
+          - id_gas_station : int
+          - price_one_litr : int
+          - unit : String
+          + FuelEntity()
+          + FuelEntity()
+          + FuelEntity()
+          + FuelEntity()
+          + FuelEntity()
+          + FuelEntity()
+          + getFirm_id_firm()
+          + getFuel_amount()
+          + getFuel_code()
+          + getFuel_type()
+          + getGas_station_address()
+          + getGas_station_name()
+          + getId_fuel()
+          + getId_fuel_has_gas_station()
+          + getId_gas_station()
+          + getPrice_one_litr()
+          + getUnit()
+          {static} + isCodeIncorrect()
+          {static} + isFirmIncorrect()
+          {static} + isTypeIncorrect()
+          {static} + isUnitIncorrect()
+          + setFirm_id_firm()
+          + setFuel_amount()
+          + setFuel_code()
+          + setFuel_type()
+          + setGas_station_address()
+          + setGas_station_name()
+          + setId_fuel()
+          + setId_fuel_has_gas_station()
+          + setId_gas_station()
+          + setPrice_one_litr()
+          + setUnit()
+          + toString()
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace database.entity {
+      class org.orgname.app.database.entity.StationEntity {
+          - firm_id_firm : int
+          - gas_station_address : String
+          - gas_station_code : int
+          - gas_station_name : String
+          - id_gas_station : int
+          + StationEntity()
+          + StationEntity()
+          + getFirm_id_firm()
+          + getGas_station_address()
+          + getGas_station_code()
+          + getGas_station_name()
+          + getId_gas_station()
+          + setFirm_id_firm()
+          + setGas_station_address()
+          + setGas_station_code()
+          + setGas_station_name()
+          + setId_gas_station()
+          + toString()
+      }
+    }
+  }
+  
+
+  namespace org.orgname.app {
+    namespace database.entity {
+      class org.orgname.app.database.entity.UserEntity {
+          - account_type : String
+          - client_account_amount : String
+          - client_fio : String
+          - client_phone : int
+          - id_client : int
+          - login : String
+          - password : String
+          + UserEntity()
+          + UserEntity()
+          + UserEntity()
+          + UserEntity()
+          + UserEntity()
+          + getAccount_type()
+          + getClient_account_amount()
+          + getClient_fio()
+          + getClient_phone()
+          + getId_client()
+          + getLogin()
+          + getPassword()
+          {static} + isLoginIncorrect()
+          {static} + isPasswordIncorrect()
+          {static} + isPhoneIncorrect()
+          + setAccount_type()
+          + setAccount_type_def()
+          + setClient_account_amount()
+          + setClient_account_amount_def()
+          + setClient_fio()
+          + setClient_phone()
+          + setId_client()
+          + setLogin()
+          + setPassword()
+          + toString()
+      }
+    }
+  }
+  
+
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

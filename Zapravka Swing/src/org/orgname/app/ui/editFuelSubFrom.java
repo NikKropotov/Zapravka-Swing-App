@@ -39,13 +39,49 @@ public class editFuelSubFrom extends BaseSubForm {
 
     private void initButtons() {
         editFuelButton.addActionListener(e -> {
-            fuelEntity.setFuel_code(Integer.parseInt(fuel_codeField.getText()));
-            fuelEntity.setFuel_type(fuel_typeField.getText());
-            fuelEntity.setUnit(unitField.getText());
-            fuelEntity.setPrice_one_litr(Integer.parseInt(priceField.getText()));
-            fuelEntity.setFuel_amount(Integer.parseInt(amountField.getText()));
-            fuelEntity.setFirm_id_firm(Integer.parseInt(firmField.getText()));
+            int fuel_code = Integer.parseInt(fuel_codeField.getText());
+            if (FuelEntity.isCodeIncorrect(String.valueOf(fuel_code))) {
+                DialogUtil.showError(this, "Код введен некорректно");
+                return;
+            } else {
+                fuelEntity.setFuel_code(Integer.parseInt(fuel_codeField.getText()));
 
+            }
+            String fuel_type = fuel_typeField.getText();
+            if (FuelEntity.isTypeIncorrect(String.valueOf(fuel_type))) {
+                DialogUtil.showError(this, "Марка введена некорректно");
+                return;
+            } else {
+                fuelEntity.setFuel_type(fuel_typeField.getText());
+            }
+            String unit = unitField.getText();
+            if (FuelEntity.isUnitIncorrect(String.valueOf(unit))) {
+                DialogUtil.showError(this, "Единица измерения введена некорректно");
+                return;
+            } else {
+                fuelEntity.setUnit(unitField.getText());
+            }
+            int price = Integer.parseInt(priceField.getText());
+            if (FuelEntity.isPriceIncorrect(price)) {
+                DialogUtil.showError(this, "Цена введена некорректно");
+                return;
+            } else {
+                fuelEntity.setPrice_one_litr(Integer.parseInt(priceField.getText()));
+            }
+            int amount = Integer.parseInt(amountField.getText());
+            if (FuelEntity.isAmountIncorrect(amount)) {
+                DialogUtil.showError(this, "Количество введено некорректно");
+                return;
+            } else {
+                fuelEntity.setFuel_amount(Integer.parseInt(amountField.getText()));
+            }
+            int firm = Integer.parseInt(firmField.getText());
+            if (FuelEntity.isFirmIncorrect(String.valueOf(firm))) {
+                DialogUtil.showError(this, "Номер Поставщика введен некорректно");
+                return;
+            } else {
+                fuelEntity.setFirm_id_firm(Integer.parseInt(firmField.getText()));
+            }
             try {
                 String gas_name = String.valueOf(comboBox1.getSelectedItem());
                 FuelEntity gas = fuelEntityManager.getStaionByName(gas_name);

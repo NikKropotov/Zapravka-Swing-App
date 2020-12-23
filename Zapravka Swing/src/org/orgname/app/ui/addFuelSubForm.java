@@ -64,7 +64,15 @@ public class addFuelSubForm extends BaseSubForm {
                 return;
             }
             int price = Integer.parseInt(priceField.getText());
+            if (FuelEntity.isPriceIncorrect(price)) {
+                DialogUtil.showError(this, "Цена введена некорректно");
+                return;
+            }
             int amount = Integer.parseInt(amountField.getText());
+            if (FuelEntity.isAmountIncorrect(amount)) {
+                DialogUtil.showError(this, "Количество введено некорректно");
+                return;
+            }
             int firm = Integer.parseInt(firmField.getText());
             if (FuelEntity.isFirmIncorrect(String.valueOf(firm))) {
                 DialogUtil.showError(this, "Номер Поставщика введен некорректно");

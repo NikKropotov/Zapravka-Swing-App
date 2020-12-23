@@ -77,6 +77,14 @@ public class FuelEntity {
         return s.length() == 0;
     }
 
+    public static boolean isPriceIncorrect(int s) {
+        return s < 0 || s > 10000;
+    }
+
+    public static boolean isAmountIncorrect(int s) {
+        return s < 0 || s > 10000;
+    }
+
     @Override
     public String toString() {
         return fuel_type + '\n' +

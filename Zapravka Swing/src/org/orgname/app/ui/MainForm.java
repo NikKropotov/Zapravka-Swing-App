@@ -283,6 +283,7 @@ public class MainForm extends BaseForm {
         statisticButton.setBorder(null);
         addFuelsButton.setBorder(null);
 
+
         addFuelsButton.setBackground(new Color(39, 193, 167));
         addFuelsButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
         addFuelsButton.setBorderPainted(false);

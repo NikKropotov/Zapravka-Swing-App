@@ -77,7 +77,11 @@ public class FuelMark extends BaseForm {
         mathButton.addActionListener(e -> {
             try {
                 double amount = Double.parseDouble(amountField.getText());
-                totalLabel.setText(price + "₽" + " * " + amount);
+                if (amount < 0) {
+                    DialogUtil.showError(this, "Количество введено некорректно");
+                    return;
+                }
+                totalLabel.setText(price + "₽" + " * " + amount + "л");
                 double score = price * amount;
                 scoreLabel.setText(score + "₽");
             } catch (Exception i) {
@@ -86,59 +90,6 @@ public class FuelMark extends BaseForm {
             }
         });
     }
-
-//    private void initTable() {
-//        fuelTable.getTableHeader().setReorderingAllowed(false);
-//
-//        table2Model = new DefaultTableModel() {
-//            @Override
-//            public boolean isCellEditable(int row, int column) {
-//                return false;
-//            }
-//        };
-//
-//        //получение записи по двойному клику
-//        fuelTable.addMouseListener(new MouseAdapter() {
-//            public void mousePressed(MouseEvent mouseEvent) {
-//                JTable table = (JTable) mouseEvent.getSource();
-//                Point point = mouseEvent.getPoint();
-//                int row = table.rowAtPoint(point);
-//
-//                if (mouseEvent.getClickCount() == 2 && table.getSelectedRow() != -1) {
-//
-//                    Object[] rowValues = new Object[table2Model.getColumnCount()];
-//                    for (int i = 0; i < table2Model.getColumnCount(); i++) {
-//                        rowValues[i] = table2Model.getValueAt(row, i);
-//                    }
-//                    System.out.println(Arrays.toString(rowValues));
-//                }
-//            }
-//        });
-//
-//        fuelTable.setModel(table2Model);
-//        table2Model.addColumn("Топливо");
-//        table2Model.addColumn("Заправка");
-//        table2Model.addColumn("Цена за литр");
-//
-//        fuelTable.setAutoCreateRowSorter(true);
-//    }
-//
-//    private void loadTableData() {
-//        try {
-//            List<FuelEntity> fuel = FuelEntityManager.getFuelByStation(fuelEntity.getGas_station_address());
-//            for (FuelEntity f : fuel) {
-//                table2Model.addRow(new Object[]{
-//                        f.getFuel_type(),
-//                        f.getGas_station_name(),
-//                        f.getPrice_one_litr()
-//                });
-//            }
-//
-//        } catch (SQLException throwables) {
-//            throwables.printStackTrace();
-//            DialogUtil.showError("Не удалось загрузить данные");
-//        }
-//    }
 
     private void initTable() {
         fuelTable.addMouseListener(new MouseAdapter() {
@@ -248,6 +199,38 @@ public class FuelMark extends BaseForm {
         backButton.setBorder(null);
         mathButton.setBorder(null);
         statisticButton.setBorder(null);
+        editFuelButton.setBorder(null);
+        deleteFuelButton.setBorder(null);
+
+        deleteFuelButton.setBackground(new Color(39, 193, 167));
+        deleteFuelButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
+        deleteFuelButton.setBorderPainted(false);
+
+        deleteFuelButton.setBorder(new EmptyBorder(10, 30, 10, 30));
+        deleteFuelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deleteFuelButton.setBackground(new Color(32, 153, 129));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deleteFuelButton.setBackground(new Color(39, 193, 167));
+            }
+        });
+
+        editFuelButton.setBackground(new Color(39, 193, 167));
+        editFuelButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
+        editFuelButton.setBorderPainted(false);
+
+        editFuelButton.setBorder(new EmptyBorder(10, 30, 10, 30));
+        editFuelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                editFuelButton.setBackground(new Color(32, 153, 129));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                editFuelButton.setBackground(new Color(39, 193, 167));
+            }
+        });
 
         backButton.setBackground(new Color(39, 193, 167));
         backButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
@@ -336,10 +319,6 @@ public class FuelMark extends BaseForm {
     public int getFormHeight() {
         return 600;
     }
-
-//    public DefaultTableModel getTable2Model() {
-//        return table2Model;
-//    }
 
     public CustomTableModel<FuelEntity> getTableModel() {
         return table2Model;
